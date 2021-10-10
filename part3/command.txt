@@ -1,0 +1,14 @@
+# после переноса всех данных в корневую папку HDFS
+
+jar contrib/streaming/hadoop-*streaming*.jar \
+-mapper /mapper_mean.py \
+-reducer /reducer_mean.py \
+-input /AB_NYC_2019_sep_~.csv \
+-output /otp
+
+
+jar $HADOOP_HOME/hadoop-streaming.jar \
+-mapper /mapper_mean.py \
+-reducer /reducer_mean.py \
+-input /AB_NYC_2019_sep_~.csv \
+-output /otp
