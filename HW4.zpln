@@ -1,0 +1,1464 @@
+{
+ "paragraphs": [
+  {
+   "text": "%md\n## Считываем данные",
+   "user": "anonymous",
+   "dateUpdated": "2021-12-03T11:08:35+0000",
+   "progress": 0.0,
+   "config": {
+    "tableHide": false,
+    "editorSetting": {
+     "language": "markdown",
+     "editOnDblClick": true,
+     "completionKey": "TAB",
+     "completionSupport": false
+    },
+    "colWidth": 12.0,
+    "editorMode": "ace/mode/markdown",
+    "fontSize": 9.0,
+    "editorHide": true,
+    "results": {},
+    "enabled": true
+   },
+   "settings": {
+    "params": {
+     "bdtMeta": {
+      "inlay": {}
+     }
+    },
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "HTML",
+      "data": "<div class=\"markdown-body\">\n<h2>Считываем данные</h2>\n\n</div>"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {},
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1638529715001_1250945881",
+   "id": "paragraph_1638529715001_1250945881",
+   "dateCreated": "2021-12-03T11:08:35+0000",
+   "dateStarted": "2021-12-03T11:08:35+0000",
+   "dateFinished": "2021-12-03T11:08:35+0000",
+   "status": "FINISHED"
+  },
+  {
+   "title": "",
+   "text": "val df = spark.read\r\n    .option(\"header\", \"true\")\r\n    .option(\"inferSchema\", \"true\")\r\n    .option(\"sep\", \",\")\r\n    .csv(\"/notebook/tripadvisor_hotel_reviews.csv\")",
+   "user": "anonymous",
+   "dateUpdated": "2021-12-03T13:30:10+0000",
+   "progress": 0.0,
+   "config": {
+    "editorSetting": {
+     "language": "scala",
+     "editOnDblClick": false,
+     "completionKey": "TAB",
+     "completionSupport": true
+    },
+    "colWidth": 12.0,
+    "editorMode": "ace/mode/scala",
+    "fontSize": 9.0,
+    "title": false,
+    "results": {},
+    "enabled": true
+   },
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "TEXT",
+      "data": "\u001b[1m\u001b[34mdf\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m = [Review: string, Rating: int]\n"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {
+    "jobUrl": {
+     "propertyName": "jobUrl",
+     "label": "SPARK JOB",
+     "tooltip": "View in Spark web UI",
+     "group": "spark",
+     "values": [
+      {
+       "jobUrl": "http://61cf38aa32a6:4040/jobs/job?id=54"
+      },
+      {
+       "jobUrl": "http://61cf38aa32a6:4040/jobs/job?id=55"
+      }
+     ],
+     "interpreterSettingId": "spark"
+    }
+   },
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1638538210767_782206105",
+   "id": "paragraph_1638538210767_782206105",
+   "dateCreated": "2021-12-03T13:30:10+0000",
+   "dateStarted": "2021-12-03T13:30:10+0000",
+   "dateFinished": "2021-12-03T13:30:11+0000",
+   "status": "FINISHED"
+  },
+  {
+   "text": "df.show(5)",
+   "user": "anonymous",
+   "dateUpdated": "2021-12-03T13:30:13+0000",
+   "progress": 0.0,
+   "config": {
+    "editorSetting": {
+     "language": "scala",
+     "editOnDblClick": false,
+     "completionKey": "TAB",
+     "completionSupport": true
+    },
+    "colWidth": 12.0,
+    "editorMode": "ace/mode/scala",
+    "fontSize": 9.0,
+    "results": {},
+    "enabled": true
+   },
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "TEXT",
+      "data": "+--------------------+------+\n|              Review|Rating|\n+--------------------+------+\n|nice hotel expens...|     4|\n|ok nothing specia...|     2|\n|nice rooms not 4*...|     3|\n|unique, great sta...|     5|\n|great stay great ...|     5|\n+--------------------+------+\nonly showing top 5 rows\n\n"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {
+    "jobUrl": {
+     "propertyName": "jobUrl",
+     "label": "SPARK JOB",
+     "tooltip": "View in Spark web UI",
+     "group": "spark",
+     "values": [
+      {
+       "jobUrl": "http://61cf38aa32a6:4040/jobs/job?id=56"
+      }
+     ],
+     "interpreterSettingId": "spark"
+    }
+   },
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1638538213805_570423136",
+   "id": "paragraph_1638538213805_570423136",
+   "dateCreated": "2021-12-03T13:30:13+0000",
+   "dateStarted": "2021-12-03T13:30:13+0000",
+   "dateFinished": "2021-12-03T13:30:14+0000",
+   "status": "FINISHED"
+  },
+  {
+   "text": "// добавляем id документов\n// The generated ID is guaranteed to be monotonically increasing and unique, but not consecutive\nval df_doc = df\n        .withColumn(\"doc_id\", monotonically_increasing_id())",
+   "user": "anonymous",
+   "dateUpdated": "2021-12-03T13:30:21+0000",
+   "progress": 0.0,
+   "config": {},
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "TEXT",
+      "data": "\u001b[1m\u001b[34mdf_doc\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m = [Review: string, Rating: int ... 1 more field]\n"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {},
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1638538221344_1573118430",
+   "id": "paragraph_1638538221344_1573118430",
+   "dateCreated": "2021-12-03T13:30:21+0000",
+   "dateStarted": "2021-12-03T13:30:21+0000",
+   "dateFinished": "2021-12-03T13:30:21+0000",
+   "status": "FINISHED"
+  },
+  {
+   "text": "df_doc.show(5)",
+   "user": "anonymous",
+   "dateUpdated": "2021-12-03T12:50:35+0000",
+   "progress": 0.0,
+   "config": {},
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "TEXT",
+      "data": "+--------------------+------+------+\n|              Review|Rating|doc_id|\n+--------------------+------+------+\n|nice hotel expens...|     4|     0|\n|ok nothing specia...|     2|     1|\n|nice rooms not 4*...|     3|     2|\n|unique, great sta...|     5|     3|\n|great stay great ...|     5|     4|\n+--------------------+------+------+\nonly showing top 5 rows\n\n"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {
+    "jobUrl": {
+     "propertyName": "jobUrl",
+     "label": "SPARK JOB",
+     "tooltip": "View in Spark web UI",
+     "group": "spark",
+     "values": [
+      {
+       "jobUrl": "http://61cf38aa32a6:4040/jobs/job?id=6"
+      }
+     ],
+     "interpreterSettingId": "spark"
+    }
+   },
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1638535835691_1076482189",
+   "id": "paragraph_1638535835691_1076482189",
+   "dateCreated": "2021-12-03T12:50:35+0000",
+   "dateStarted": "2021-12-03T12:50:35+0000",
+   "dateFinished": "2021-12-03T12:50:36+0000",
+   "status": "FINISHED"
+  },
+  {
+   "text": "df_doc.count()",
+   "user": "anonymous",
+   "dateUpdated": "2021-12-03T13:29:06+0000",
+   "progress": 0.0,
+   "config": {},
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "TEXT",
+      "data": "\u001b[1m\u001b[34mres36\u001b[0m: \u001b[1m\u001b[32mLong\u001b[0m = 20491\n"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {
+    "jobUrl": {
+     "propertyName": "jobUrl",
+     "label": "SPARK JOB",
+     "tooltip": "View in Spark web UI",
+     "group": "spark",
+     "values": [
+      {
+       "jobUrl": "http://61cf38aa32a6:4040/jobs/job?id=53"
+      }
+     ],
+     "interpreterSettingId": "spark"
+    }
+   },
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1638538146936_1832651727",
+   "id": "paragraph_1638538146936_1832651727",
+   "dateCreated": "2021-12-03T13:29:06+0000",
+   "dateStarted": "2021-12-03T13:29:07+0000",
+   "dateFinished": "2021-12-03T13:29:07+0000",
+   "status": "FINISHED"
+  },
+  {
+   "text": "%md\n## Регистр",
+   "user": "anonymous",
+   "dateUpdated": "2021-12-03T06:21:36+0000",
+   "progress": 0.0,
+   "config": {
+    "tableHide": false,
+    "editorSetting": {
+     "language": "markdown",
+     "editOnDblClick": true,
+     "completionKey": "TAB",
+     "completionSupport": false
+    },
+    "colWidth": 12.0,
+    "editorMode": "ace/mode/markdown",
+    "fontSize": 9.0,
+    "editorHide": true,
+    "results": {},
+    "enabled": true
+   },
+   "settings": {
+    "params": {
+     "bdtMeta": {
+      "inlay": {}
+     }
+    },
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "HTML",
+      "data": "<div class=\"markdown-body\">\n<h2>Регистр</h2>\n\n</div>"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {},
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1638512496543_1431493061",
+   "id": "paragraph_1638512496543_1431493061",
+   "dateCreated": "2021-12-03T06:21:36+0000",
+   "dateStarted": "2021-12-03T06:21:36+0000",
+   "dateFinished": "2021-12-03T06:21:36+0000",
+   "status": "FINISHED"
+  },
+  {
+   "text": "// приводим все к одному регистру\nimport org.apache.spark.sql.functions.lower\n\nval df_lower = df_doc\n        .withColumn(\"Review_lower\", lower(col(\"Review\")))",
+   "user": "anonymous",
+   "dateUpdated": "2021-12-03T12:50:49+0000",
+   "progress": 0.0,
+   "config": {},
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "TEXT",
+      "data": "import org.apache.spark.sql.functions.lower\n\u001b[1m\u001b[34mdf_lower\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m = [Review: string, Rating: int ... 2 more fields]\n"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {},
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1638535849344_206215030",
+   "id": "paragraph_1638535849344_206215030",
+   "dateCreated": "2021-12-03T12:50:49+0000",
+   "dateStarted": "2021-12-03T12:50:49+0000",
+   "dateFinished": "2021-12-03T12:50:49+0000",
+   "status": "FINISHED"
+  },
+  {
+   "text": "df_lower.show(5)",
+   "user": "anonymous",
+   "dateUpdated": "2021-12-03T12:50:51+0000",
+   "progress": 0.0,
+   "config": {},
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "TEXT",
+      "data": "+--------------------+------+------+--------------------+\n|              Review|Rating|doc_id|        Review_lower|\n+--------------------+------+------+--------------------+\n|nice hotel expens...|     4|     0|nice hotel expens...|\n|ok nothing specia...|     2|     1|ok nothing specia...|\n|nice rooms not 4*...|     3|     2|nice rooms not 4*...|\n|unique, great sta...|     5|     3|unique, great sta...|\n|great stay great ...|     5|     4|great stay great ...|\n+--------------------+------+------+--------------------+\nonly showing top 5 rows\n\n"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {
+    "jobUrl": {
+     "propertyName": "jobUrl",
+     "label": "SPARK JOB",
+     "tooltip": "View in Spark web UI",
+     "group": "spark",
+     "values": [
+      {
+       "jobUrl": "http://61cf38aa32a6:4040/jobs/job?id=7"
+      }
+     ],
+     "interpreterSettingId": "spark"
+    }
+   },
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1638535851233_386298327",
+   "id": "paragraph_1638535851233_386298327",
+   "dateCreated": "2021-12-03T12:50:51+0000",
+   "dateStarted": "2021-12-03T12:50:51+0000",
+   "dateFinished": "2021-12-03T12:50:51+0000",
+   "status": "FINISHED"
+  },
+  {
+   "text": "%md\n## Очистка: специальные символы + пробелы",
+   "user": "anonymous",
+   "dateUpdated": "2021-12-03T12:50:56+0000",
+   "progress": 0.0,
+   "config": {
+    "editorHide": false
+   },
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "HTML",
+      "data": "<div class=\"markdown-body\">\n<h2>Очистка: специальные символы + пробелы</h2>\n\n</div>"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {},
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1638535856617_1611201181",
+   "id": "paragraph_1638535856617_1611201181",
+   "dateCreated": "2021-12-03T12:50:56+0000",
+   "dateStarted": "2021-12-03T12:50:56+0000",
+   "dateFinished": "2021-12-03T12:50:56+0000",
+   "status": "FINISHED"
+  },
+  {
+   "text": "import org.apache.spark.sql.functions.regexp_replace\n\nval df_pure = df_lower\n        .withColumn(\"Review_lower_pure\", regexp_replace(col(\"Review_lower\"), \"[^a-zA-Z ]+\", \"\")) // убираю спец символы\n        .withColumn(\"Review_lower_pure_singleSpace\", regexp_replace(col(\"Review_lower_pure\"), \"[ ]+\", \" \")) // заменяю множественный пробелы на одинарные\n        .withColumn(\"Review_lower_pure_singleSpace_trim\", trim(col(\"Review_lower_pure_singleSpace\"))) // убираю пробелы в начале и в конце предложения",
+   "user": "anonymous",
+   "dateUpdated": "2021-12-03T12:50:59+0000",
+   "progress": 0.0,
+   "config": {},
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "TEXT",
+      "data": "import org.apache.spark.sql.functions.regexp_replace\n\u001b[1m\u001b[34mdf_pure\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m = [Review: string, Rating: int ... 5 more fields]\n"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {},
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1638535859839_1645478675",
+   "id": "paragraph_1638535859839_1645478675",
+   "dateCreated": "2021-12-03T12:50:59+0000",
+   "dateStarted": "2021-12-03T12:50:59+0000",
+   "dateFinished": "2021-12-03T12:51:00+0000",
+   "status": "FINISHED"
+  },
+  {
+   "text": "df_pure.show(5)",
+   "user": "anonymous",
+   "dateUpdated": "2021-12-03T12:51:04+0000",
+   "progress": 0.0,
+   "config": {},
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "TEXT",
+      "data": "+--------------------+------+------+--------------------+--------------------+-----------------------------+----------------------------------+\n|              Review|Rating|doc_id|        Review_lower|   Review_lower_pure|Review_lower_pure_singleSpace|Review_lower_pure_singleSpace_trim|\n+--------------------+------+------+--------------------+--------------------+-----------------------------+----------------------------------+\n|nice hotel expens...|     4|     0|nice hotel expens...|nice hotel expens...|         nice hotel expens...|              nice hotel expens...|\n|ok nothing specia...|     2|     1|ok nothing specia...|ok nothing specia...|         ok nothing specia...|              ok nothing specia...|\n|nice rooms not 4*...|     3|     2|nice rooms not 4*...|nice rooms not  e...|         nice rooms not ex...|              nice rooms not ex...|\n|unique, great sta...|     5|     3|unique, great sta...|unique great stay...|         unique great stay...|              unique great stay...|\n|great stay great ...|     5|     4|great stay great ...|great stay great ...|         great stay great ...|              great stay great ...|\n+--------------------+------+------+--------------------+--------------------+-----------------------------+----------------------------------+\nonly showing top 5 rows\n\n"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {
+    "jobUrl": {
+     "propertyName": "jobUrl",
+     "label": "SPARK JOB",
+     "tooltip": "View in Spark web UI",
+     "group": "spark",
+     "values": [
+      {
+       "jobUrl": "http://61cf38aa32a6:4040/jobs/job?id=8"
+      }
+     ],
+     "interpreterSettingId": "spark"
+    }
+   },
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1638535863899_104810662",
+   "id": "paragraph_1638535863899_104810662",
+   "dateCreated": "2021-12-03T12:51:03+0000",
+   "dateStarted": "2021-12-03T12:51:04+0000",
+   "dateFinished": "2021-12-03T12:51:04+0000",
+   "status": "FINISHED"
+  },
+  {
+   "text": "%md\n## Выделение токенов в отдельные строки",
+   "user": "anonymous",
+   "dateUpdated": "2021-12-03T12:51:33+0000",
+   "progress": 0.0,
+   "config": {
+    "tableHide": false
+   },
+   "settings": {
+    "params": {
+     "bdtMeta": {
+      "inlay": {}
+     }
+    },
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "HTML",
+      "data": "<div class=\"markdown-body\">\n<h2>Выделение токенов в отдельные строки</h2>\n\n</div>"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {},
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1638535893257_2056807006",
+   "id": "paragraph_1638535893257_2056807006",
+   "dateCreated": "2021-12-03T12:51:33+0000",
+   "dateStarted": "2021-12-03T12:51:33+0000",
+   "dateFinished": "2021-12-03T12:51:33+0000",
+   "status": "FINISHED"
+  },
+  {
+   "text": "// разбиваем на токены\nval df_words = df_pure\n        .select(\"doc_id\", \"Review_lower_pure_singleSpace_trim\")\n        .withColumn(\"words\", split(col(\"Review_lower_pure_singleSpace_trim\"), \" \"))",
+   "user": "anonymous",
+   "dateUpdated": "2021-12-03T12:52:25+0000",
+   "progress": 0.0,
+   "config": {},
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "TEXT",
+      "data": "\u001b[1m\u001b[34mdf_words\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m = [doc_id: bigint, Review_lower_pure_singleSpace_trim: string ... 1 more field]\n"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {},
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1638535945173_1386267180",
+   "id": "paragraph_1638535945173_1386267180",
+   "dateCreated": "2021-12-03T12:52:25+0000",
+   "dateStarted": "2021-12-03T12:52:25+0000",
+   "dateFinished": "2021-12-03T12:52:26+0000",
+   "status": "FINISHED"
+  },
+  {
+   "text": "df_words.show(5)",
+   "user": "anonymous",
+   "dateUpdated": "2021-12-03T13:00:03+0000",
+   "progress": 0.0,
+   "config": {
+    "tableHide": true
+   },
+   "settings": {
+    "params": {
+     "bdtMeta": {
+      "inlay": {
+       "collapsed": true
+      }
+     }
+    },
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "TEXT",
+      "data": "+------+----------------------------------+--------------------+\n|doc_id|Review_lower_pure_singleSpace_trim|               words|\n+------+----------------------------------+--------------------+\n|     0|              nice hotel expens...|[nice, hotel, exp...|\n|     1|              ok nothing specia...|[ok, nothing, spe...|\n|     2|              nice rooms not ex...|[nice, rooms, not...|\n|     3|              unique great stay...|[unique, great, s...|\n|     4|              great stay great ...|[great, stay, gre...|\n+------+----------------------------------+--------------------+\nonly showing top 5 rows\n\n"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {
+    "jobUrl": {
+     "propertyName": "jobUrl",
+     "label": "SPARK JOB",
+     "tooltip": "View in Spark web UI",
+     "group": "spark",
+     "values": [
+      {
+       "jobUrl": "http://61cf38aa32a6:4040/jobs/job?id=12"
+      }
+     ],
+     "interpreterSettingId": "spark"
+    }
+   },
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1638536403407_1161783234",
+   "id": "paragraph_1638536403407_1161783234",
+   "dateCreated": "2021-12-03T13:00:03+0000",
+   "dateStarted": "2021-12-03T13:00:03+0000",
+   "dateFinished": "2021-12-03T13:00:04+0000",
+   "status": "FINISHED"
+  },
+  {
+   "text": "// каждый токен отдельной строкой\nval columns = df_words.columns.map(col) :+\n      (explode(col(\"words\")) as \"token\")\nval df_token = df_words\n        .select(columns: _*)\n        .select(\"doc_id\", \"words\", \"token\")",
+   "user": "anonymous",
+   "dateUpdated": "2021-12-03T13:00:08+0000",
+   "progress": 0.0,
+   "config": {},
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "TEXT",
+      "data": "\u001b[1m\u001b[34mcolumns\u001b[0m: \u001b[1m\u001b[32mArray[org.apache.spark.sql.Column]\u001b[0m = Array(doc_id, Review_lower_pure_singleSpace_trim, words, explode(words) AS `token`)\n\u001b[1m\u001b[34mdf_token\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m = [doc_id: bigint, words: array<string> ... 1 more field]\n"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {},
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1638536408012_106036082",
+   "id": "paragraph_1638536408012_106036082",
+   "dateCreated": "2021-12-03T13:00:08+0000",
+   "dateStarted": "2021-12-03T13:00:08+0000",
+   "dateFinished": "2021-12-03T13:00:09+0000",
+   "status": "FINISHED"
+  },
+  {
+   "text": "df_token.show(5)",
+   "user": "anonymous",
+   "dateUpdated": "2021-12-03T13:00:11+0000",
+   "progress": 0.0,
+   "config": {},
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "TEXT",
+      "data": "+------+--------------------+---------+\n|doc_id|               words|    token|\n+------+--------------------+---------+\n|     0|[nice, hotel, exp...|     nice|\n|     0|[nice, hotel, exp...|    hotel|\n|     0|[nice, hotel, exp...|expensive|\n|     0|[nice, hotel, exp...|  parking|\n|     0|[nice, hotel, exp...|      got|\n+------+--------------------+---------+\nonly showing top 5 rows\n\n"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {
+    "jobUrl": {
+     "propertyName": "jobUrl",
+     "label": "SPARK JOB",
+     "tooltip": "View in Spark web UI",
+     "group": "spark",
+     "values": [
+      {
+       "jobUrl": "http://61cf38aa32a6:4040/jobs/job?id=13"
+      }
+     ],
+     "interpreterSettingId": "spark"
+    }
+   },
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1638536411250_1600777985",
+   "id": "paragraph_1638536411250_1600777985",
+   "dateCreated": "2021-12-03T13:00:11+0000",
+   "dateStarted": "2021-12-03T13:00:11+0000",
+   "dateFinished": "2021-12-03T13:00:11+0000",
+   "status": "FINISHED"
+  },
+  {
+   "text": "%md\n## Отбираем TOP100 токенов",
+   "user": "anonymous",
+   "dateUpdated": "2021-12-03T13:00:15+0000",
+   "progress": 0.0,
+   "config": {},
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "HTML",
+      "data": "<div class=\"markdown-body\">\n<h2>Отбираем TOP100 токенов</h2>\n\n</div>"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {},
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1638536415482_1321917955",
+   "id": "paragraph_1638536415482_1321917955",
+   "dateCreated": "2021-12-03T13:00:15+0000",
+   "dateStarted": "2021-12-03T13:00:15+0000",
+   "dateFinished": "2021-12-03T13:00:15+0000",
+   "status": "FINISHED"
+  },
+  {
+   "text": "val df_token_100 = df_token.groupBy(\"token\")\n        .agg(count(\"words\") as \"tf_all_corpus\")\n        .orderBy(desc(\"tf_all_corpus\"))\n        .limit(100)\n        .cache()",
+   "user": "anonymous",
+   "dateUpdated": "2021-12-03T13:00:55+0000",
+   "progress": 0.0,
+   "config": {},
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "TEXT",
+      "data": "\u001b[1m\u001b[34mdf_token_100\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.Dataset[org.apache.spark.sql.Row]\u001b[0m = [token: string, tf_all_corpus: bigint]\n"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {},
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1638536455341_1383112432",
+   "id": "paragraph_1638536455341_1383112432",
+   "dateCreated": "2021-12-03T13:00:55+0000",
+   "dateStarted": "2021-12-03T13:00:55+0000",
+   "dateFinished": "2021-12-03T13:00:55+0000",
+   "status": "FINISHED"
+  },
+  {
+   "text": "df_token_100.show(5)",
+   "user": "anonymous",
+   "dateUpdated": "2021-12-03T13:00:59+0000",
+   "progress": 0.0,
+   "config": {},
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "TEXT",
+      "data": "+-----+-------------+\n|token|tf_all_corpus|\n+-----+-------------+\n|hotel|        48920|\n| room|        34347|\n|  not|        31527|\n|great|        21097|\n|   nt|        19000|\n+-----+-------------+\nonly showing top 5 rows\n\n"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {
+    "jobUrl": {
+     "propertyName": "jobUrl",
+     "label": "SPARK JOB",
+     "tooltip": "View in Spark web UI",
+     "group": "spark",
+     "values": [
+      {
+       "jobUrl": "http://61cf38aa32a6:4040/jobs/job?id=14"
+      }
+     ],
+     "interpreterSettingId": "spark"
+    }
+   },
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1638536458954_1608207126",
+   "id": "paragraph_1638536458954_1608207126",
+   "dateCreated": "2021-12-03T13:00:58+0000",
+   "dateStarted": "2021-12-03T13:00:59+0000",
+   "dateFinished": "2021-12-03T13:00:59+0000",
+   "status": "FINISHED"
+  },
+  {
+   "text": "%md\n## В исходных данных оставляем только те строки, которые относятся к токенам TOP100",
+   "user": "anonymous",
+   "dateUpdated": "2021-12-03T11:25:25+0000",
+   "progress": 0.0,
+   "config": {},
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "HTML",
+      "data": "<div class=\"markdown-body\">\n<h2>В исходных данных оставляем только те строки, которые относятся к токенам TOP100</h2>\n\n</div>"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {},
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1638530725217_2004390435",
+   "id": "paragraph_1638530725217_2004390435",
+   "dateCreated": "2021-12-03T11:25:25+0000",
+   "dateStarted": "2021-12-03T11:25:25+0000",
+   "dateFinished": "2021-12-03T11:25:25+0000",
+   "status": "FINISHED"
+  },
+  {
+   "text": "val df_doc_token_100 = df_token.join(df_token_100, Seq(\"token\"), \"inner\")",
+   "user": "anonymous",
+   "dateUpdated": "2021-12-03T13:01:36+0000",
+   "progress": 0.0,
+   "config": {},
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "TEXT",
+      "data": "\u001b[1m\u001b[34mdf_doc_token_100\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m = [token: string, doc_id: bigint ... 2 more fields]\n"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {},
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1638536496612_1872623157",
+   "id": "paragraph_1638536496612_1872623157",
+   "dateCreated": "2021-12-03T13:01:36+0000",
+   "dateStarted": "2021-12-03T13:01:36+0000",
+   "dateFinished": "2021-12-03T13:01:37+0000",
+   "status": "FINISHED"
+  },
+  {
+   "text": "df_doc_token_100.show",
+   "user": "anonymous",
+   "dateUpdated": "2021-12-03T13:01:40+0000",
+   "progress": 0.0,
+   "config": {},
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "TEXT",
+      "data": "+-----------+------+--------------------+-------------+\n|      token|doc_id|               words|tf_all_corpus|\n+-----------+------+--------------------+-------------+\n|       nice|     0|[nice, hotel, exp...|        12412|\n|      hotel|     0|[nice, hotel, exp...|        48920|\n|        got|     0|[nice, hotel, exp...|         6187|\n|       good|     0|[nice, hotel, exp...|        16990|\n|       stay|     0|[nice, hotel, exp...|        15160|\n|      hotel|     0|[nice, hotel, exp...|        48920|\n|    arrived|     0|[nice, hotel, exp...|         2834|\n|       took|     0|[nice, hotel, exp...|         2941|\n|    reviews|     0|[nice, hotel, exp...|         3743|\n|        did|     0|[nice, hotel, exp...|        13896|\n|      check|     0|[nice, hotel, exp...|         2928|\n|     little|     0|[nice, hotel, exp...|         6243|\n|       view|     0|[nice, hotel, exp...|         4613|\n|       room|     0|[nice, hotel, exp...|        34347|\n|       room|     0|[nice, hotel, exp...|        34347|\n|      clean|     0|[nice, hotel, exp...|         9364|\n|       nice|     0|[nice, hotel, exp...|        12412|\n|        bed|     0|[nice, hotel, exp...|         4861|\n|comfortable|     0|[nice, hotel, exp...|         4412|\n|        not|     0|[nice, hotel, exp...|        31527|\n+-----------+------+--------------------+-------------+\nonly showing top 20 rows\n\n"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {
+    "jobUrl": {
+     "propertyName": "jobUrl",
+     "label": "SPARK JOB",
+     "tooltip": "View in Spark web UI",
+     "group": "spark",
+     "values": [
+      {
+       "jobUrl": "http://61cf38aa32a6:4040/jobs/job?id=15"
+      },
+      {
+       "jobUrl": "http://61cf38aa32a6:4040/jobs/job?id=16"
+      }
+     ],
+     "interpreterSettingId": "spark"
+    }
+   },
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1638536500061_868663542",
+   "id": "paragraph_1638536500061_868663542",
+   "dateCreated": "2021-12-03T13:01:40+0000",
+   "dateStarted": "2021-12-03T13:01:40+0000",
+   "dateFinished": "2021-12-03T13:01:41+0000",
+   "status": "FINISHED"
+  },
+  {
+   "text": "%md\n## Term Frequency",
+   "user": "anonymous",
+   "dateUpdated": "2021-12-03T11:29:32+0000",
+   "progress": 0.0,
+   "config": {},
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "HTML",
+      "data": "<div class=\"markdown-body\">\n<h2>Term Frequency</h2>\n\n</div>"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {},
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1638530972378_687239001",
+   "id": "paragraph_1638530972378_687239001",
+   "dateCreated": "2021-12-03T11:29:32+0000",
+   "dateStarted": "2021-12-03T11:29:32+0000",
+   "dateFinished": "2021-12-03T11:29:32+0000",
+   "status": "FINISHED"
+  },
+  {
+   "text": "val df_tf = df_doc_token_100.groupBy(\"doc_id\", \"token\")\n        .agg(count(\"token\") as \"tf\")",
+   "user": "anonymous",
+   "dateUpdated": "2021-12-03T13:06:12+0000",
+   "progress": 0.0,
+   "config": {},
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "TEXT",
+      "data": "\u001b[1m\u001b[34mdf_tf\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m = [doc_id: bigint, token: string ... 1 more field]\n"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {},
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1638536772852_678224471",
+   "id": "paragraph_1638536772852_678224471",
+   "dateCreated": "2021-12-03T13:06:12+0000",
+   "dateStarted": "2021-12-03T13:06:12+0000",
+   "dateFinished": "2021-12-03T13:06:13+0000",
+   "status": "FINISHED"
+  },
+  {
+   "text": "df_tf.show(5)",
+   "user": "anonymous",
+   "dateUpdated": "2021-12-03T13:06:16+0000",
+   "progress": 20.0,
+   "config": {},
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "TEXT",
+      "data": "+------+------+---+\n|doc_id| token| tf|\n+------+------+---+\n|     0|  room|  3|\n|     1|better|  2|\n|    10|    nt|  2|\n|    12| clean|  1|\n|    15|  stay|  2|\n+------+------+---+\nonly showing top 5 rows\n\n"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {
+    "jobUrl": {
+     "propertyName": "jobUrl",
+     "label": "SPARK JOB",
+     "tooltip": "View in Spark web UI",
+     "group": "spark",
+     "values": [
+      {
+       "jobUrl": "http://61cf38aa32a6:4040/jobs/job?id=21"
+      },
+      {
+       "jobUrl": "http://61cf38aa32a6:4040/jobs/job?id=22"
+      }
+     ],
+     "interpreterSettingId": "spark"
+    }
+   },
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1638536776589_1294507095",
+   "id": "paragraph_1638536776589_1294507095",
+   "dateCreated": "2021-12-03T13:06:16+0000",
+   "dateStarted": "2021-12-03T13:06:16+0000",
+   "dateFinished": "2021-12-03T13:06:19+0000",
+   "status": "FINISHED"
+  },
+  {
+   "text": "%md\n## Document Frequency",
+   "user": "anonymous",
+   "dateUpdated": "2021-12-03T09:40:30+0000",
+   "progress": 0.0,
+   "config": {},
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "HTML",
+      "data": "<div class=\"markdown-body\">\n<h2>Document Frequency</h2>\n\n</div>"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {},
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1638524430198_1824292307",
+   "id": "paragraph_1638524430198_1824292307",
+   "dateCreated": "2021-12-03T09:40:30+0000",
+   "dateStarted": "2021-12-03T09:40:30+0000",
+   "dateFinished": "2021-12-03T09:40:30+0000",
+   "status": "FINISHED"
+  },
+  {
+   "text": "val df_df = df_doc_token_100.groupBy(\"token\")\n        .agg(countDistinct(\"doc_id\") as \"df\")",
+   "user": "anonymous",
+   "dateUpdated": "2021-12-03T13:08:44+0000",
+   "progress": 0.0,
+   "config": {},
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "TEXT",
+      "data": "\u001b[1m\u001b[34mdf_df\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m = [token: string, df: bigint]\n"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {},
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1638536924771_1445085225",
+   "id": "paragraph_1638536924771_1445085225",
+   "dateCreated": "2021-12-03T13:08:44+0000",
+   "dateStarted": "2021-12-03T13:08:44+0000",
+   "dateFinished": "2021-12-03T13:08:45+0000",
+   "status": "FINISHED"
+  },
+  {
+   "text": "df_df.show(5)",
+   "user": "anonymous",
+   "dateUpdated": "2021-12-03T13:08:47+0000",
+   "progress": 0.0,
+   "config": {},
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "TEXT",
+      "data": "+------+-----+\n| token|   df|\n+------+-----+\n| staff|11528|\n|nights| 3896|\n|   day| 5781|\n|   did| 7207|\n|   got| 4162|\n+------+-----+\nonly showing top 5 rows\n\n"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {
+    "jobUrl": {
+     "propertyName": "jobUrl",
+     "label": "SPARK JOB",
+     "tooltip": "View in Spark web UI",
+     "group": "spark",
+     "values": [
+      {
+       "jobUrl": "http://61cf38aa32a6:4040/jobs/job?id=27"
+      },
+      {
+       "jobUrl": "http://61cf38aa32a6:4040/jobs/job?id=28"
+      },
+      {
+       "jobUrl": "http://61cf38aa32a6:4040/jobs/job?id=29"
+      },
+      {
+       "jobUrl": "http://61cf38aa32a6:4040/jobs/job?id=30"
+      }
+     ],
+     "interpreterSettingId": "spark"
+    }
+   },
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1638536927761_1615632321",
+   "id": "paragraph_1638536927761_1615632321",
+   "dateCreated": "2021-12-03T13:08:47+0000",
+   "dateStarted": "2021-12-03T13:08:47+0000",
+   "dateFinished": "2021-12-03T13:08:53+0000",
+   "status": "FINISHED"
+  },
+  {
+   "text": "%md\n## Inverse Document Frequency",
+   "user": "anonymous",
+   "dateUpdated": "2021-12-03T11:35:35+0000",
+   "progress": 0.0,
+   "config": {},
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "HTML",
+      "data": "<div class=\"markdown-body\">\n<h2>Inverse Document Frequency</h2>\n\n</div>"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {},
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1638531335507_589127960",
+   "id": "paragraph_1638531335507_589127960",
+   "dateCreated": "2021-12-03T11:35:35+0000",
+   "dateStarted": "2021-12-03T11:35:35+0000",
+   "dateFinished": "2021-12-03T11:35:35+0000",
+   "status": "FINISHED"
+  },
+  {
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "apps": [],
+   "status": "READY",
+   "text": "// IDF(t,D) = log[ (|D| + 1) / (DF(t,D) + 1) ]\n// IDF(t, D) is the IDF of the term t in the document corpus D.\n// |D| is the total number of documents in the corpus D.\n// DF(t, D) is the DF of the term t in the document corpus D.",
+   "id": "",
+   "config": {}
+  },
+  {
+   "text": "val calc_inv_doc_freq_udf = udf((D: Long, DF: Long) => {Math.log((D + 1) / (DF + 1))})",
+   "user": "anonymous",
+   "dateUpdated": "2021-12-03T13:10:00+0000",
+   "progress": 0.0,
+   "config": {},
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "TEXT",
+      "data": "\u001b[1m\u001b[34mcalc_inv_doc_freq_udf\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.expressions.UserDefinedFunction\u001b[0m = UserDefinedFunction(<function2>,DoubleType,Some(List(LongType, LongType)))\n"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {},
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1638537000457_11797664",
+   "id": "paragraph_1638537000457_11797664",
+   "dateCreated": "2021-12-03T13:10:00+0000",
+   "dateStarted": "2021-12-03T13:10:00+0000",
+   "dateFinished": "2021-12-03T13:10:01+0000",
+   "status": "FINISHED"
+  },
+  {
+   "text": "val D = df.count",
+   "user": "anonymous",
+   "dateUpdated": "2021-12-03T13:10:05+0000",
+   "progress": 0.0,
+   "config": {
+    "editorSetting": {
+     "language": "scala",
+     "editOnDblClick": false,
+     "completionKey": "TAB",
+     "completionSupport": true
+    },
+    "colWidth": 12.0,
+    "editorMode": "ace/mode/scala",
+    "fontSize": 9.0,
+    "results": {},
+    "enabled": true
+   },
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "TEXT",
+      "data": "\u001b[1m\u001b[34mD\u001b[0m: \u001b[1m\u001b[32mLong\u001b[0m = 20491\n"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {
+    "jobUrl": {
+     "propertyName": "jobUrl",
+     "label": "SPARK JOB",
+     "tooltip": "View in Spark web UI",
+     "group": "spark",
+     "values": [
+      {
+       "jobUrl": "http://61cf38aa32a6:4040/jobs/job?id=33"
+      }
+     ],
+     "interpreterSettingId": "spark"
+    }
+   },
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1638537004769_356036377",
+   "id": "paragraph_1638537004769_356036377",
+   "dateCreated": "2021-12-03T13:10:04+0000",
+   "dateStarted": "2021-12-03T13:10:05+0000",
+   "dateFinished": "2021-12-03T13:10:05+0000",
+   "status": "FINISHED"
+  },
+  {
+   "text": "val df_idf = df_df.\n        withColumn(\"idf\", calc_inv_doc_freq_udf(lit(D), col(\"df\")))",
+   "user": "anonymous",
+   "dateUpdated": "2021-12-03T13:10:11+0000",
+   "progress": 0.0,
+   "config": {},
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "TEXT",
+      "data": "\u001b[1m\u001b[34mdf_idf\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m = [token: string, df: bigint ... 1 more field]\n"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {},
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1638537011358_761896586",
+   "id": "paragraph_1638537011358_761896586",
+   "dateCreated": "2021-12-03T13:10:11+0000",
+   "dateStarted": "2021-12-03T13:10:11+0000",
+   "dateFinished": "2021-12-03T13:10:11+0000",
+   "status": "FINISHED"
+  },
+  {
+   "text": "df_idf.show(5)\n",
+   "user": "anonymous",
+   "dateUpdated": "2021-12-03T13:10:14+0000",
+   "progress": 88.0,
+   "config": {
+    "editorSetting": {
+     "language": "scala",
+     "editOnDblClick": false,
+     "completionKey": "TAB",
+     "completionSupport": true
+    },
+    "colWidth": 12.0,
+    "editorMode": "ace/mode/scala",
+    "fontSize": 9.0,
+    "results": {},
+    "enabled": true
+   },
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "TEXT",
+      "data": "+------+-----+------------------+\n| token|   df|               idf|\n+------+-----+------------------+\n| staff|11528|               0.0|\n|nights| 3896|1.6094379124341003|\n|   day| 5781|1.0986122886681098|\n|   did| 7207|0.6931471805599453|\n|   got| 4162|1.3862943611198906|\n+------+-----+------------------+\nonly showing top 5 rows\n\n"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {
+    "jobUrl": {
+     "propertyName": "jobUrl",
+     "label": "SPARK JOB",
+     "tooltip": "View in Spark web UI",
+     "group": "spark",
+     "values": [
+      {
+       "jobUrl": "http://61cf38aa32a6:4040/jobs/job?id=34"
+      },
+      {
+       "jobUrl": "http://61cf38aa32a6:4040/jobs/job?id=35"
+      },
+      {
+       "jobUrl": "http://61cf38aa32a6:4040/jobs/job?id=36"
+      },
+      {
+       "jobUrl": "http://61cf38aa32a6:4040/jobs/job?id=37"
+      }
+     ],
+     "interpreterSettingId": "spark"
+    }
+   },
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1638537014828_555953884",
+   "id": "paragraph_1638537014828_555953884",
+   "dateCreated": "2021-12-03T13:10:14+0000",
+   "dateStarted": "2021-12-03T13:10:14+0000",
+   "dateFinished": "2021-12-03T13:10:21+0000",
+   "status": "FINISHED"
+  },
+  {
+   "text": "%md\n## TF-IDF",
+   "user": "anonymous",
+   "dateUpdated": "2021-12-03T12:08:52+0000",
+   "progress": 0.0,
+   "config": {
+    "editorSetting": {
+     "language": "scala",
+     "editOnDblClick": false,
+     "completionKey": "TAB",
+     "completionSupport": true
+    },
+    "colWidth": 12.0,
+    "editorMode": "ace/mode/scala",
+    "fontSize": 9.0,
+    "results": {},
+    "enabled": true
+   },
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "HTML",
+      "data": "<div class=\"markdown-body\">\n<h2>Inverse Document Frequency</h2>\n\n</div>"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {},
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1638533332504_2082843062",
+   "id": "paragraph_1638533332504_2082843062",
+   "dateCreated": "2021-12-03T12:08:52+0000",
+   "dateStarted": "2021-12-03T12:08:52+0000",
+   "dateFinished": "2021-12-03T12:08:52+0000",
+   "status": "FINISHED"
+  },
+  {
+   "text": "val tf_idf = df_tf\n        .join(df_idf, Seq(\"token\"), \"left\")\n        .withColumn(\"tf_idf\", col(\"tf\") * col(\"idf\"))",
+   "user": "anonymous",
+   "dateUpdated": "2021-12-03T13:12:03+0000",
+   "progress": 0.0,
+   "config": {
+    "editorSetting": {
+     "language": "scala",
+     "editOnDblClick": false,
+     "completionKey": "TAB",
+     "completionSupport": true
+    },
+    "colWidth": 12.0,
+    "editorMode": "ace/mode/scala",
+    "fontSize": 9.0,
+    "results": {},
+    "enabled": true
+   },
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "TEXT",
+      "data": "\u001b[1m\u001b[34mtf_idf\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m = [token: string, doc_id: bigint ... 4 more fields]\n"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {},
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1638537123903_1347363825",
+   "id": "paragraph_1638537123903_1347363825",
+   "dateCreated": "2021-12-03T13:12:03+0000",
+   "dateStarted": "2021-12-03T13:12:03+0000",
+   "dateFinished": "2021-12-03T13:12:04+0000",
+   "status": "FINISHED"
+  },
+  {
+   "text": "tf_idf.show",
+   "user": "anonymous",
+   "dateUpdated": "2021-12-03T13:12:06+0000",
+   "progress": 99.0,
+   "config": {},
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "TEXT",
+      "data": "+------+-----------+---+----+------------------+------------------+\n| token|     doc_id| tf|  df|               idf|            tf_idf|\n+------+-----------+---+----+------------------+------------------+\n|nights|       2962|  1|3896|1.6094379124341003|1.6094379124341003|\n|nights|       3456|  1|3896|1.6094379124341003|1.6094379124341003|\n|nights|       4605|  2|3896|1.6094379124341003|3.2188758248682006|\n|nights|       4687|  1|3896|1.6094379124341003|1.6094379124341003|\n|nights|       4947|  1|3896|1.6094379124341003|1.6094379124341003|\n|nights| 8589935076|  1|3896|1.6094379124341003|1.6094379124341003|\n|nights| 8589936667|  1|3896|1.6094379124341003|1.6094379124341003|\n|nights| 8589936771|  1|3896|1.6094379124341003|1.6094379124341003|\n|nights| 8589937193|  1|3896|1.6094379124341003|1.6094379124341003|\n|nights| 8589938066|  1|3896|1.6094379124341003|1.6094379124341003|\n|nights| 8589938119|  1|3896|1.6094379124341003|1.6094379124341003|\n|nights|17179873949|  1|3896|1.6094379124341003|1.6094379124341003|\n|nights|25769804985|  1|3896|1.6094379124341003|1.6094379124341003|\n|nights|25769805776|  1|3896|1.6094379124341003|1.6094379124341003|\n|nights|25769806427|  1|3896|1.6094379124341003|1.6094379124341003|\n|nights|        793|  1|3896|1.6094379124341003|1.6094379124341003|\n|nights|        837|  1|3896|1.6094379124341003|1.6094379124341003|\n|nights|       1596|  1|3896|1.6094379124341003|1.6094379124341003|\n|nights|       1778|  1|3896|1.6094379124341003|1.6094379124341003|\n|nights|       2167|  1|3896|1.6094379124341003|1.6094379124341003|\n+------+-----------+---+----+------------------+------------------+\nonly showing top 20 rows\n\n"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {
+    "jobUrl": {
+     "propertyName": "jobUrl",
+     "label": "SPARK JOB",
+     "tooltip": "View in Spark web UI",
+     "group": "spark",
+     "values": [
+      {
+       "jobUrl": "http://61cf38aa32a6:4040/jobs/job?id=40"
+      },
+      {
+       "jobUrl": "http://61cf38aa32a6:4040/jobs/job?id=41"
+      },
+      {
+       "jobUrl": "http://61cf38aa32a6:4040/jobs/job?id=42"
+      }
+     ],
+     "interpreterSettingId": "spark"
+    }
+   },
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1638537126747_699291596",
+   "id": "paragraph_1638537126747_699291596",
+   "dateCreated": "2021-12-03T13:12:06+0000",
+   "dateStarted": "2021-12-03T13:12:06+0000",
+   "dateFinished": "2021-12-03T13:12:15+0000",
+   "status": "FINISHED"
+  },
+  {
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "apps": [],
+   "status": "READY",
+   "text": "// Большие значения doc_id связаны с особенностями функции monotonically_increasing_id\n// https://spark.apache.org/docs/latest/api/python/reference/api/pyspark.sql.functions.monotonically_increasing_id.html\n// The generated ID is guaranteed to be monotonically increasing and unique, but not consecutive",
+   "id": "",
+   "config": {}
+  }
+ ],
+ "name": "HW4",
+ "id": "2GPQFNA93",
+ "defaultInterpreterGroup": "spark",
+ "version": "0.10.0",
+ "noteParams": {},
+ "noteForms": {},
+ "angularObjects": {},
+ "config": {
+  "isZeppelinNotebookCronEnable": false
+ },
+ "info": {}
+}
